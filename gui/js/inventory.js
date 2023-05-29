@@ -4,7 +4,7 @@ const SelectedItemname = document.getElementById('selected-item')
 let PieGraphQty
 let PieChart = null
 
-const InventoryTable = new Table(document.getElementById('inventory'), ['Products', 'Class', 'Price', 'Quantity'])
+const InventoryTable = new Table(document.getElementById('inventory'), ['Productos', 'Clase', 'Precio', 'Cantidad'])
 
 async function LoadInventory () {
   const response = await fetch('/data/inventory')
@@ -88,17 +88,17 @@ EditButton.addEventListener('click', event => {
 
     DisplayPopUp(EditPopUp)
   } else {
-    window.alert('Make a selection first by clicking an item in the inventory list')
+    window.alert('Realiza primero la seleccion de un articulo en la lista de inventario')
   }
 })
 
 DeleteButton.addEventListener('click', event => {
   if (InventoryTable.selection) {
     const ItemName = document.getElementById('del-name')
-    ItemName.innerText = `Remove '${InventoryTable.selection.itemname}' from the inventory?`
+    ItemName.innerText = `¿Eliminar '${InventoryTable.selection.itemname}' del inventario?`
     DisplayPopUp(DeletePopUp)
   } else {
-    window.alert('Make a selection first by clicking an item in the inventory list')
+    window.alert('Realiza primero la seleccion de un articulo en la lista de inventario')
   }
 })
 

@@ -110,9 +110,9 @@ class Table {
           console.log('Initial Selection')
         }
 
-        this.style.backgroundColor = 'rgb(7, 153, 153)'
+        this.style.backgroundColor = 'rgb(93, 104, 158)'
         this.style.color = 'white'
-        this.style.outline = '0.2em solid rgb(5, 185, 5)'
+        this.style.outline = '0.2em solid rgb(11, 40, 186)'
 
         trPrev = this
 

@@ -57,7 +57,7 @@ input{
   gap: 1em;
   padding: 1em;
 
-  background:rgba(22, 153, 240, 0.74);
+  background:rgba(201, 203, 204, 0.74);
 }
 
 .popup{
@@ -67,12 +67,12 @@ input{
   width: clamp(100px,80vw,600px);
   border-radius: .7em;
   padding: 1em 0px;
-  background-color: rgba(255, 230, 0, 0.644);
+  background-color: rgba(116, 119, 108);
 }
 
 .popup > h2 {
-  color: white;
-  background-color: blue;
+  color: rgb(0, 0, 0);
+  background-color: rgba(116, 119, 108);
   padding: 0px .5em;
 }
 
@@ -98,6 +98,6 @@ input{
 .popup > div > div > div {
   width: 48%;
   text-align: center;
-  color: white;
+  color: rgb(0, 0, 0);
   padding: .2em;
 }
