@@ -21,7 +21,7 @@ fastify.setNotFoundHandler((req, res) => {
 
 const start = async () => {
   try {
-    await fastify.listen({ port: PORT, host: '::' })
+    await fastify.listen({ port: PORT, host: 'localhost' })
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)
