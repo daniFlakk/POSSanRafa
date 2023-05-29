@@ -1,0 +1,68 @@
+.gbtn {
+  color: white;
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+
+  border-radius: 0.5em 0.5em 0.5em 0.5em;
+  
+  padding: 2em 1em;
+
+  -webkit-box-shadow: 0.2em 0.2em 0.1em rgba(0, 0, 0, 0.247);
+  -moz-box-shadow: 0.2em 0.2em 0.1em rgba(0, 0, 0, 0.247);
+  -ms-box-shadow: 0.2em 0.2em 0.1em rgba(0, 0, 0, 0.247);
+  -o-box-shadow: 0.2em 0.2em 0.1em rgba(0, 0, 0, 0.247);
+  box-shadow: 0.2em 0.2em 0.1em rgba(0, 0, 0, 0.247);
+
+  transition: ease 0.2s;
+}
+
+.gbtn:hover {
+  transform: scale(1.05);
+  -webkit-box-shadow: 0.4em 0.4em 0.2em rgba(0, 0, 0, 0.096), 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.247);
+  -moz-box-shadow: 0.4em 0.4em 0.2em rgba(0, 0, 0, 0.096), 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.247);
+  -ms-box-shadow: 0.4em 0.4em 0.2em rgba(0, 0, 0, 0.096), 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.247);
+  -o-box-shadow: 0.4em 0.4em 0.2em rgba(0, 0, 0, 0.096), 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.247);
+  box-shadow: 0.4em 0.4em 0.2em rgba(0, 0, 0, 0.096), 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.247);
+}
+
+.gbtn{
+  cursor:pointer;
+}
+
+/* button colors and border */
+
+.cblue{
+  background: rgb(99, 133, 171);
+  border: 0.2em solid rgb(79, 116, 171);
+}
+
+.cred{
+  background: rgb(240, 46, 47);
+  border: 0.2em solid rgb(128, 3, 45);
+}
+
+.cgreen{
+  background-image: linear-gradient(45deg, rgb(0, 117, 10), rgb(3, 175, 32));
+  border: 0.2em solid rgb(14, 71, 3);
+}
+
+.goback{
+  background-color: rgb(160, 44, 50);
+  border: medium solid grey;
+  border-radius: 0.9em 0.9em 0.9em 0.9em;
+  padding: 0.2em;
+  text-align: center;
+}
+
+.goback:hover {
+  transform: scale(1.05);
+  -webkit-box-shadow: 0.4em 0.4em 0.2em rgba(0, 0, 0, 0.096), 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.247);
+  -moz-box-shadow: 0.4em 0.4em 0.2em rgba(0, 0, 0, 0.096), 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.247);
+  -ms-box-shadow: 0.4em 0.4em 0.2em rgba(0, 0, 0, 0.096), 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.247);
+  -o-box-shadow: 0.4em 0.4em 0.2em rgba(0, 0, 0, 0.096), 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.247);
+  box-shadow: 0.4em 0.4em 0.2em rgba(0, 0, 0, 0.096), 0.2em 0.2em 0.2em rgba(0, 0, 0, 0.247);
+}

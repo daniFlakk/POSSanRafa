@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/globals.css">
+  <link rel="stylesheet" href="../css/text.css">
+  <link rel="stylesheet" href="../css/visual/layout.css">
+  <link rel="stylesheet" href="../css/gui-button.css">
+
+  <script type="module" src="../js/minify-charts.js"></script>
+  <script type="module" src="../js/visual.js" defer></script>
+  <title>M.POS - Data Visualization</title>
+</head>
+<body>
+
+  <div class="options">
+
+    <h2>Set Time Frame</h2>
+
+    <div class="dates">
+      <div>
+        <p>Starting Date</p>
+        <input id="start" type="date">
+      </div>
+      <div>
+        <p>End Date</p>
+        <input id="end" type="date">
+      </div>
+    </div>
+
+    <div class="goback">
+      <a href="/gui/menu"><p>&#8592 Go Back</p></a>
+    </div>
+
+    <button class="gbtn cgreen gn">Generate Visuals</button>
+
+  </div>
+
+  <div class="report-container">
+    <div class="reports"></div>
+  </div>
+
+</body>
+</html>

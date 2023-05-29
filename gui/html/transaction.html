@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../css/globals.css">
+  <link rel="stylesheet" href="../css/text.css">
+  <link rel="stylesheet" href="../css/transaction/layout.css">
+  <link rel="stylesheet" href="../css/transaction/mobile.css">
+  <link rel="stylesheet" href="../css/inventory/table.css">
+  <link rel="stylesheet" href="../css/gui-button.css">
+
+  <script type="module" src="../js/transaction.js" defer></script>
+
+  <title>M.POS - Transaction</title>
+</head>
+<body>
+  <div class="main">
+    <div style="background-color: rgb(216, 232, 204);" class="invtbl tblc">
+      <h2 style="background-color: rgb(159, 167, 150);" >Productos disponibles</h2>
+      <table id="inventory">
+        <thead></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="transaction">
+      <div class="goback">
+        <a href="/gui/menu"><p>&#8592 Go Back</p></a>
+      </div>
+      <h2 style="color: rgb(216, 232, 204);" >Transaction</h2>
+      <div class="panel1">
+        <div class="indiv">
+          <span class="inlbl">Selected Item</span>
+          <input class="in ro" id="selected-item" value="None" readonly>
+        </div>
+  
+        <div class="indiv">
+          <span class="inlbl">Filter</span>
+          <input class="in" id="filter" placeholder="Search an Item">
+        </div>
+  
+        <div class="indiv">
+          <span class="inlbl">Quantity</span>
+          <input class="in" id="selected-quantity" value="0" placeholder="Number of Items to add" type="number" required>
+        </div>
+  
+        <div class="gbtn cgreen abtn"> Add Item</div>
+        <div class="gbtn cblue mbtn nbtn"> Next</div>
+      </div>
+  
+      <div class="panel2">
+  
+        <div class="gbtn cred mbtn pbtn"> Previous</div>
+        <div class="gbtn cred rbtn"> Remove Item</div>
+
+        <div class="indiv">
+          <span class="inlbl">Total Price</span>
+          <input class="in ro" id="total-price" value="₱0" readonly>
+        </div>
+  
+        <div class="indiv">
+          <span class="inlbl">Payment</span>
+          <input class="in" id="payment" value="0" type="number" placeholder="customer's payment amount" required>
+        </div>
+  
+        <div class="gbtn cblue cbtn"> Calculate Change</div>
+  
+        <div class="indiv">
+          <span class="inlbl">Change</span>
+          <input class="in ro" id="change" value="₱0" readonly>
+        </div>
+  
+        <div class="gbtn cgreen sbtn"> Save Transcation</div>
+    
+      </div>
+    </div>
+
+    <div style="background-color: rgb(216, 232, 204);" class="buy-table tblc">
+      <h2 style="background-color: rgb(159, 167, 150);" >Products to be Sold</h2>
+      <table id="chosen">
+        <thead></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
