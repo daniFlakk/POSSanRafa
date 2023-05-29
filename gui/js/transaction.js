@@ -8,8 +8,8 @@ const InValTotalPrice = document.getElementById('total-price')
 const InValPayment = document.getElementById('payment')
 const InValChange = document.getElementById('change')
 
-const InventoryTable = new Table(document.getElementById('inventory'), ['Products', 'Class', 'Price', 'Quantity'])
-const BuyTable = new Table(document.getElementById('chosen'), ['Products', 'Class', 'Price', 'Quantity'])
+const InventoryTable = new Table(document.getElementById('inventory'), ['Productos', 'Clase', 'Precio', 'Cantidad'])
+const BuyTable = new Table(document.getElementById('chosen'), ['Productos', 'Clase', 'Precio', 'Cantidad'])
 
 let CanBeSaved = false
 let filterMatch = null
@@ -75,11 +75,11 @@ document.getElementById('filter').addEventListener('input', () => {
 // Buying an Item
 document.querySelector('.abtn').addEventListener('click', async () => {
   if (!InventoryTable.trSelected) {
-    window.alert('Select an Item First in the Available Products Table')
+    window.alert('Primero selecione un articulo de la lista')
   } else if (
     InValSelectedQuantity.value === '0' ||
     InValSelectedQuantity.value === '') {
-    window.alert('Input a Quantity First')
+    window.alert('Ingrese una cantidad primero')
   } else {
     // Add Item Action
     let FilteredData = InventoryTable.data
@@ -93,7 +93,7 @@ document.querySelector('.abtn').addEventListener('click', async () => {
     const DeductedQuantity = FilteredData[InventoryTable.selectedIndex].quantity - quantity
 
     if (DeductedQuantity < 0) {
-      window.alert('Not enough item')
+      window.alert('No hay cantidad suficiente')
     } else {
       FilteredData[InventoryTable.selectedIndex].quantity = DeductedQuantity
       BuyTable.data.push({
@@ -131,7 +131,7 @@ document.querySelector('.abtn').addEventListener('click', async () => {
 // Removing an Item
 document.querySelector('.rbtn').addEventListener('click', async () => {
   if (!BuyTable.trSelected) {
-    window.alert('Select an Item First to be Removed in the Products to be Sold Table')
+    window.alert('Primero selecione un articulo de la lista para eliminarlo de la venta')
   } else {
     try {
       // Re-Add the quantity in the database
@@ -170,15 +170,15 @@ document.querySelector('.cbtn').addEventListener('click', () => {
   const Payment = InValPayment.value
 
   if (BuyTable.data.length < 1) {
-    window.alert('No Items to Buy : Add an item first')
+    window.alert('No hay un valor de venta : primero agregue un articulo a la venta')
   } else if (
     InValPayment.value === '0.0' ||
     InValPayment.value === '0' ||
     InValPayment.value === ''
   ) {
-    window.alert('No payment Value : Input a payment amount first')
+    window.alert('No hay valor de pago por favor indique con cuanto desean pagar')
   } else if (CurrentTotal > Payment) {
-    window.alert('Payment is not enough')
+    window.alert('El valor con el que desean pagar es insuficiente')
   } else {
     // Calculate Change Action
     const ChangeAmount = Payment - CurrentTotal
@@ -190,9 +190,9 @@ document.querySelector('.cbtn').addEventListener('click', () => {
 // Save Transactions
 document.querySelector('.sbtn').addEventListener('click', async () => {
   if (BuyTable.data.length <= 0) {
-    window.alert('No products in the "Products To be Sold" table : Add a product first')
+    window.alert('No hay productos en la lista de venta')
   } else if (!CanBeSaved) {
-    window.alert('Calculate Change first')
+    window.alert('Calcule el cambio primero')
   } else {
     const SaveDate = new Date().toISOString()
 
