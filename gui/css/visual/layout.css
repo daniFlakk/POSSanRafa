@@ -29,6 +29,40 @@ h2 {
 }
 
 .reports > div {
-    background-color: white;
+    background-color: rgb(197, 210, 186);
+    border-radius: 10px;
+    margin-bottom: 25px;
 }
 
+#start {
+    
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid rgb(61, 61, 79);
+    border-radius: 4px;
+    background-color: rgb(95, 95, 87);
+  }
+  
+  
+  #start::-webkit-calendar-picker-indicator {
+    
+    filter: invert(1); 
+    cursor: pointer; 
+  }
+
+  #end {
+    
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid rgb(61, 61, 79);
+    border-radius: 4px;
+    background-color: rgb(95, 95, 87);
+  }
+  
+  
+  #end::-webkit-calendar-picker-indicator {
+    
+    filter: invert(1);
+    cursor: pointer;
+  }
+  

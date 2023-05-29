@@ -16,7 +16,7 @@ async function GetTimeFrameData (StartDate, EndDate) {
   return data
 }
 
-function PrintLine (canvas, labels, values, name = 'n/a', LineColor = 'rgb(75, 192, 192)') {
+function PrintLine (canvas, labels, values, name = 'n/a', LineColor = 'rgb(61, 61, 79)') {
   const LineChart = new Chart(canvas, { // eslint-disable-line
     type: 'line',
     data: {
@@ -200,25 +200,25 @@ async function GenerateReports (data) {
 
   const SummaryMsg = document.createElement('div')
 
-  PieTextQuantity.innerText = 'Sold Items Quantity Ratio'
-  PieTextAmount.innerText = 'Sold Items Revenue Ratio'
-  LineTextAmount.innerText = 'Amount Daily Totals'
+  PieTextQuantity.innerText = 'Relación de cantidad de artículos vendidos'
+  PieTextAmount.innerText = 'Relación de ingresos por artículos vendidos \n'
+  LineTextAmount.innerText = 'Total de ingresos diarios'
   LineTextQuantity.innerText = 'Cantidad diaria total'
   SummaryMsg.innerHTML =
-    `<br><br>
-    <h1>Sold Quantities</h2>
-    <p>El producto más vendido es ${MaxQtySoldProduct},
-    con una cantidad total ${MaxQtySold}x ${MaxQtySoldProduct} durante el periodo de tiempo elegido.</p>
+    `
+    <h1>Unidades vendidas</h2>
+    <p>El producto más vendido es <strong> ${MaxQtySoldProduct}   </strong>,
+    con una cantidad total <strong> ${MaxQtySold}x ${MaxQtySoldProduct} </strong> durante el periodo de tiempo elegido.</p>
     
-    <p>On The other hand, the least sold product in quantity is ${MinQtySoldProduct},
-    there are only a total of ${MinQtySold}x ${MinQtySoldProduct} sold during the time period specified.</p>
+    <p>El producto menos vendido es <strong> ${MinQtySoldProduct} </strong>,
+    con un total de <strong> ${MinQtySold}x ${MinQtySoldProduct} </strong> vendidos en el periodo de tiempo elegido.</p>
     
-    <h1>Product Revenues</h2>
-    <p>The product that have the biggest revenue is ${MaxRevenueSoldProduct}, during the time period specified
-    ${MaxRevenueSoldProduct} sold a total of ₱${MaxRevenueSold}.</p>
+    <h1>Ingresos por producto</h2>
+    <p>El producto que genero mas ingresos fue <strong> ${MaxRevenueSoldProduct} </strong>, durante el periodo de tiempo elegido
+    ${MaxRevenueSoldProduct} genero <strong> ${MaxRevenueSold} </strong>.</p>
     
-    <p>On the other hand, The product that have the smallest revenue is ${MinRevenueSoldProduct}, during the time period specified
-    ${MinRevenueSoldProduct} sold only a total of ₱${MinRevenueSold}.</p>`
+    <p>El producto que genero menos ingresos fue <strong> ${MinRevenueSoldProduct} </strong>, durante el periodo de tiempo especificado
+    <strong> ${MinRevenueSoldProduct} </strong> solo genero <strong> ${MinRevenueSold} </strong>.</p>`
 
   SummaryMsg.style.display = 'flex'
   SummaryMsg.style.flexDirection = 'column'
@@ -230,10 +230,10 @@ async function GenerateReports (data) {
   LineContainerAmount.appendChild(CanvasLineDayAmount)
   LineContainerQuantity.appendChild(CanvasLineDayQuantity)
 
-  PrintPie(CanvasQuantity, products, quantity, 'Sold Quantity Ratio')
-  PrintPie(CanvasTotals, products, totalAmount, 'Sales Revenue Ratio')
-  PrintLine(CanvasLineDayAmount, DatesBetween, LineAmountParsedValues, 'Daily Revenue', 'rgb(225,86,96)')
-  PrintLine(CanvasLineDayQuantity, DatesBetween, LineQuantityParsedValues, 'Daily Sold Quantity', 'rgb(109,255,67)')
+  PrintPie(CanvasQuantity, products, quantity, 'Relación de cantidad vendida')
+  PrintPie(CanvasTotals, products, totalAmount, 'Relación de ingresos por ventas')
+  PrintLine(CanvasLineDayAmount, DatesBetween, LineAmountParsedValues, 'Ingresos diarios', 'rgb(61, 61, 79)')
+  PrintLine(CanvasLineDayQuantity, DatesBetween, LineQuantityParsedValues, 'Cantidad diaria vendida', 'rgb(160, 44, 50)')
 
   Reports.appendChild(PieTextQuantity)
   Reports.appendChild(PieContainerQuantity)
