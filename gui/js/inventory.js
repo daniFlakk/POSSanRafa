@@ -176,13 +176,13 @@ editConfirm.addEventListener('click', async () => {
   const QuantityInput = EditPopUp.querySelector('#edit-quantity')
 
   if (ItemNameInput.value === '') {
-    window.alert('Fill Up Item Name')
+    window.alert('Llene el campo nombre')
   } else if (ClassInput.value === '') {
-    window.alert('Fill Up Class')
+    window.alert('Llene el campo clase')
   } else if (PriceInput.value === '') {
-    window.alert('Fill Up Price')
+    window.alert('Llene el campo valor')
   } else if (QuantityInput.value === '') {
-    window.alert('Fill Up Quantity')
+    window.alert('Llene el campo cantidad')
   } else { // requirements meet
     try {
       // send put request

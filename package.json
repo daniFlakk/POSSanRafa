@@ -9,7 +9,7 @@
     "dev": "nodemon mpos.js",
     "lint": "npx standard *.js ./api/*.js ./controllers/*.js ./routes/*.js ./gui/js/inventory.js ./gui/js/transaction.js ./gui/js/visual.js ./gui/js/table.js"
   },
-  "author": "Mordecai Velasco",
+  "author": "Daniel Ortega",
   "license": "MIT",
   "dependencies": {
     "@fastify/static": "^6.9.0",
