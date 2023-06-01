@@ -40,6 +40,11 @@
   border: 0.2em solid rgb(79, 116, 171);
 }
 
+.cpurple{
+  background: rgb(99, 133, 171);
+  border: 0.2em solid rgb(79, 116, 171);
+}
+
 .cred{
   background: rgb(240, 46, 47);
   border: 0.2em solid rgb(128, 3, 45);

@@ -3,6 +3,11 @@ const StartDate = document.getElementById('start')
 const EndDate = document.getElementById('end')
 const Reports = document.querySelector('.reports')
 
+
+const currentDate = new Date().toISOString().split('T')[0];
+
+EndDate.max = currentDate;
+
 // -------------------- EVENTS -------------------
 document.querySelector('.gn').addEventListener('click', async function () {
   const data = await GetTimeFrameData(StartDate.value, EndDate.value)

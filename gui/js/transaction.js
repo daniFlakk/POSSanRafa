@@ -9,7 +9,7 @@ const InValPayment = document.getElementById('payment')
 const InValChange = document.getElementById('change')
 
 const InventoryTable = new Table(document.getElementById('inventory'), ['Productos', 'Clase', 'Precio', 'Cantidad'])
-const BuyTable = new Table(document.getElementById('chosen'), ['Productos', 'Clase', 'Precio', 'Cantidad'])
+const BuyTable = new Table(document.getElementById('chosen'), [])
 
 let CanBeSaved = false
 let filterMatch = null
@@ -49,9 +49,9 @@ function ResetPanelB () {
     CurrentTotal += BuyTable.data[i].price * BuyTable.data[i].quantity
   }
 
-  InValTotalPrice.value = `₱${CurrentTotal}`
+  InValTotalPrice.value = `${CurrentTotal}`
   InValPayment.value = '0'
-  InValChange.value = '₱0'
+  InValChange.value = '0'
 
   CanBeSaved = false
 }
@@ -120,7 +120,7 @@ document.querySelector('.abtn').addEventListener('click', async () => {
 
         // rerender tables
         ResetPanelA()
-        ResetPanelB()
+//        ResetPanelB()
       } catch (error) {
         console.error('ERROR in : transaction>subtract item quantity>fetch()\n', error)
       }
@@ -129,70 +129,70 @@ document.querySelector('.abtn').addEventListener('click', async () => {
 })
 
 // Removing an Item
-document.querySelector('.rbtn').addEventListener('click', async () => {
-  if (!BuyTable.trSelected) {
-    window.alert('Primero selecione un articulo de la lista para eliminarlo de la venta')
-  } else {
-    try {
-      // Re-Add the quantity in the database
-      const response = await fetch(`/data/inventory/add-qty/${BuyTable.data[BuyTable.selectedIndex].itemname.replaceAll(' ', '&+')}`, {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: 'put',
-        body: JSON.stringify({
-          quantity: BuyTable.data[BuyTable.selectedIndex].quantity
-        })
-      })
+// document.querySelector('.rbtn').addEventListener('click', async () => {
+//   if (!BuyTable.trSelected) {
+//     window.alert('Primero selecione un articulo de la lista para eliminarlo de la venta')
+//   } else {
+//     try {
+//       // Re-Add the quantity in the database
+//       const response = await fetch(`/data/inventory/add-qty/${BuyTable.data[BuyTable.selectedIndex].itemname.replaceAll(' ', '&+')}`, {
+//         headers: {
+//           Accept: 'application/json',
+//           'Content-Type': 'application/json'
+//         },
+//         method: 'put',
+//         body: JSON.stringify({
+//           quantity: BuyTable.data[BuyTable.selectedIndex].quantity
+//         })
+//       })
 
-      const data = await response.json()
-      console.log('Transaction Quantity Readded', data)
+//       const data = await response.json()
+//       console.log('Transaction Quantity Readded', data)
 
-      // rerender tables
-      ResetPanelA()
-      BuyTable.data.splice(BuyTable.selectedIndex, 1)
-      ResetPanelB()
-    } catch (error) {
-      console.error('ERROR in : transaction>re-add item quantity>fetch()\n', error)
-    }
-  }
-})
+//       // rerender tables
+//       ResetPanelA()
+//       BuyTable.data.splice(BuyTable.selectedIndex, 1)
+//       ResetPanelB()
+//     } catch (error) {
+//       console.error('ERROR in : transaction>re-add item quantity>fetch()\n', error)
+//     }
+//   }
+// })
 
-// Calculate Change
-document.querySelector('.cbtn').addEventListener('click', () => {
-  let CurrentTotal = 0
-  for (let i = 0; i < BuyTable.data.length; ++i) {
-    CurrentTotal += BuyTable.data[i].price * BuyTable.data[i].quantity
-  }
+// // Calculate Change
+// document.querySelector('.cbtn').addEventListener('click', () => {
+//   let CurrentTotal = 0
+//   for (let i = 0; i < BuyTable.data.length; ++i) {
+//     CurrentTotal += BuyTable.data[i].price * BuyTable.data[i].quantity
+//   }
 
-  // convert payment
-  const Payment = InValPayment.value
+//   // convert payment
+//   const Payment = InValPayment.value
 
-  if (BuyTable.data.length < 1) {
-    window.alert('No hay un valor de venta : primero agregue un articulo a la venta')
-  } else if (
-    InValPayment.value === '0.0' ||
-    InValPayment.value === '0' ||
-    InValPayment.value === ''
-  ) {
-    window.alert('No hay valor de pago por favor indique con cuanto desean pagar')
-  } else if (CurrentTotal > Payment) {
-    window.alert('El valor con el que desean pagar es insuficiente')
-  } else {
-    // Calculate Change Action
-    const ChangeAmount = Payment - CurrentTotal
-    InValChange.value = `₱${ChangeAmount}`
-    CanBeSaved = true
-  }
-})
+//   if (BuyTable.data.length < 1) {
+//     window.alert('No hay un valor de venta : primero agregue un articulo a la venta')
+//   } else if (
+//     InValPayment.value === '0.0' ||
+//     InValPayment.value === '0' ||
+//     InValPayment.value === ''
+//   ) {
+//     window.alert('No hay valor de pago por favor indique con cuanto desean pagar')
+//   } else if (CurrentTotal > Payment) {
+//     window.alert('El valor con el que desean pagar es insuficiente')
+//   } else {
+//     // Calculate Change Action
+//     const ChangeAmount = Payment - CurrentTotal
+//     InValChange.value = `${ChangeAmount}`
+//     CanBeSaved = true
+//   }
+// })
 
 // Save Transactions
-document.querySelector('.sbtn').addEventListener('click', async () => {
+document.querySelector('.abtn').addEventListener('click', async () => {
   if (BuyTable.data.length <= 0) {
     window.alert('No hay productos en la lista de venta')
-  } else if (!CanBeSaved) {
-    window.alert('Calcule el cambio primero')
+  // } else if (!CanBeSaved) {
+  //   window.alert('Calcule el cambio primero')
   } else {
     const SaveDate = new Date().toISOString()
 
@@ -210,7 +210,7 @@ document.querySelector('.sbtn').addEventListener('click', async () => {
       console.log(data)
       BuyTable.data = []
       ResetPanelA()
-      ResetPanelB()
+ //     ResetPanelB()
     } catch (error) {
       console.error(error)
     }

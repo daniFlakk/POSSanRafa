@@ -6,7 +6,7 @@ let PieChart = null
 
 const InventoryTable = new Table(document.getElementById('inventory'), ['Productos', 'Clase', 'Precio', 'Cantidad'])
 
-async function LoadInventory () {
+async function LoadInventory() {
   const response = await fetch('/data/inventory')
   const data = await response.json()
 
@@ -45,14 +45,14 @@ const AddButton = document.querySelector('.add')
 const EditButton = document.querySelector('.edit')
 const DeleteButton = document.querySelector('.delete')
 
-function DisplayPopUp (ShowPopUpBox) {
+function DisplayPopUp(ShowPopUpBox) {
   PopUpContainer.style.display = 'flex'
   LabelHeadings.style.display = 'none'
   PieGraphQty.style.display = 'none'
   ShowPopUpBox.style.display = 'block'
 }
 
-function ClosePopUp (ShowPopUpBox) {
+function ClosePopUp(ShowPopUpBox) {
   PopUpContainer.style.display = 'none'
   LabelHeadings.style.display = ''
   PieGraphQty.style.display = 'block'
@@ -78,17 +78,20 @@ EditButton.addEventListener('click', event => {
   if (InventoryTable.selection) {
     const ItemNameInput = EditPopUp.querySelector('#edit-itemname')
     const ClassInput = EditPopUp.querySelector('#edit-class')
-    const PriceInput = EditPopUp.querySelector('#edit-price')
     const QuantityInput = EditPopUp.querySelector('#edit-quantity')
 
     ItemNameInput.value = InventoryTable.selection.itemname
     ClassInput.value = InventoryTable.selection.class
-    PriceInput.value = InventoryTable.selection.price
     QuantityInput.value = InventoryTable.selection.quantity
+
+    // Formatear el precio
+    const formattedPrice = formatCurrency(parseFloat(InventoryTable.selection.price))
+    const PriceInput = EditPopUp.querySelector('#edit-price')
+    PriceInput.value = formattedPrice
 
     DisplayPopUp(EditPopUp)
   } else {
-    window.alert('Realiza primero la seleccion de un articulo en la lista de inventario')
+    window.alert('Realiza primero la selección de un artículo en la lista de inventario')
   }
 })
 
@@ -98,7 +101,7 @@ DeleteButton.addEventListener('click', event => {
     ItemName.innerText = `¿Eliminar '${InventoryTable.selection.itemname}' del inventario?`
     DisplayPopUp(DeletePopUp)
   } else {
-    window.alert('Realiza primero la seleccion de un articulo en la lista de inventario')
+    window.alert('Realiza primero la selección de un artículo en la lista de inventario')
   }
 })
 
@@ -201,7 +204,6 @@ editConfirm.addEventListener('click', async () => {
       })
 
       const data = await response.json()
-
       console.log('EDIT', data)
 
       // clear fields
@@ -227,11 +229,8 @@ editCancle.addEventListener('click', event => {
 
 deleteConfirm.addEventListener('click', async () => {
   try {
+    // send delete request
     const response = await fetch(`/data/inventory/${InventoryTable.selection.itemname.replaceAll(' ', '&+')}`, {
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'text/plain'
-      },
       method: 'delete'
     })
 
@@ -251,3 +250,12 @@ deleteConfirm.addEventListener('click', async () => {
 deleteCancle.addEventListener('click', event => {
   ClosePopUp(DeletePopUp)
 })
+
+// function to format currency
+function formatCurrency(value) {
+  const formatter = new Intl.NumberFormat('es-ES', {
+    style: 'currency',
+    currency: 'EUR'
+  })
+  return formatter.format(value)
+}

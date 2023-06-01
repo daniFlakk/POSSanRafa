@@ -17,26 +17,30 @@ function RefreshTable (PreviousData, FetchData) {
   return true
 }
 
-function PrintStats (CostOutput, QuantityOutput, data = null) {
-  let CostSum = '₱0'
-  let QuantitySum = '0x'
+function PrintStats(CostOutput, QuantityOutput, data = null) {
+  let CostSum = '0';
+  let QuantitySum = '0';
 
   if (data) {
-    CostSum = 0.0
-    QuantitySum = 0
+    CostSum = 0.0;
+    QuantitySum = 0;
 
     for (let i = 0; i < data.length; ++i) {
-      CostSum += data[i].price * data[i].quantity
-      QuantitySum += data[i].quantity
+      CostSum += data[i].price * data[i].quantity;
+      QuantitySum += data[i].quantity;
     }
 
-    CostSum = `₱${CostSum}`
-    QuantitySum = `${QuantitySum}x`
+    CostSum = CostSum.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    });
+    QuantitySum = `${QuantitySum}`;
   }
 
-  CostOutput.value = CostSum
-  QuantityOutput.value = QuantitySum
+  CostOutput.value = CostSum;
+  QuantityOutput.value = QuantitySum;
 }
+
 
 class Table {
   constructor (htmlTable, headings, data = null) {
@@ -58,36 +62,49 @@ class Table {
     }
   }
 
-  fillTable (data, filterMatch = null) {
-    this.data = data
+  fillTable(data, filterMatch = null) {
+    this.data = data;
     try {
       // clear
-      this.tbody.innerHTML = ''
-
+      this.tbody.innerHTML = '';
+  
       // populate rows items
       for (let i = 0; i < data.length; ++i) {
-        const tr = document.createElement('tr')
-
+        const tr = document.createElement('tr');
+  
         for (const element in data[i]) {
-          const td = document.createElement('td')
-          if (`${element}` === 'price') td.textContent = `₱${data[i][element]}`
-          else if (`${element}` === 'quantity') td.textContent = `${data[i][element]}x`
-          else td.textContent = data[i][element]
-          tr.appendChild(td)
+          const td = document.createElement('td');
+          if (`${element}` === 'price') {
+            const formattedPrice = data[i][element].toLocaleString('en-US', {
+              style: 'currency',
+              currency: 'USD',
+            });
+            td.textContent = formattedPrice;
+          } else if (`${element}` === 'quantity') {
+            td.textContent = `${data[i][element]}`;
+          } else {
+            td.textContent = data[i][element];
+          }
+          tr.appendChild(td);
         }
-
+  
         if (filterMatch) {
-          if (data[i].itemname.includes(filterMatch) || data[i].class.includes(filterMatch)) {
-            this.tbody.appendChild(tr)
+          if (
+            data[i].itemname.includes(filterMatch) ||
+            data[i].class.includes(filterMatch)
+          ) {
+            this.tbody.appendChild(tr);
           }
         } else {
-          this.tbody.appendChild(tr)
+          this.tbody.appendChild(tr);
         }
       }
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
   }
+  
+
 
   /**
    * Enables the selection of a row in a table.
@@ -123,8 +140,8 @@ class Table {
         const selected = {
           itemname: rowValues[0].innerText,
           class: rowValues[1].innerText,
-          price: rowValues[2].innerText.replaceAll('₱', ''),
-          quantity: rowValues[3].innerText.replaceAll('x', '')
+          price: rowValues[2].innerText.replaceAll(' ', ''),
+          quantity: rowValues[3].innerText.replaceAll(' ', '')
         }
 
         TableSetSelection(itself, selected, this, i)
